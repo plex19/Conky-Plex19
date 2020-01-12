@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
 
 conky.config = {
-    alignment = 'top_left',
+    alignment = 'top_right', -- top_left top_right bottom_left bottom_right none
     background = false,
     border_width = 1,
     cpu_avg_samples = 2,
@@ -38,9 +38,9 @@ conky.config = {
     draw_outline = false,
     draw_shades = false,
     extra_newline = false,
-    font = 'DejaVu Sans Mono:size=12',
-    gap_x = 60,
-    gap_y = 60,
+    font = 'Inconsolata:size=14',
+    gap_x = 10,
+    gap_y = 35,
     minimum_height = 5,
     minimum_width = 5,
     net_avg_samples = 2,
@@ -58,28 +58,35 @@ conky.config = {
     update_interval = 1.0,
     uppercase = false,
     use_spacer = 'none',
-    use_xft = true,
+    use_xft = true
 }
 
 conky.text = [[
-${color grey}Info:$color ${scroll 32 Conky $conky_version - $sysname $nodename $kernel $machine}
-$hr
-${color grey}Uptime:$color $uptime
-${color grey}Frequency (in MHz):$color $freq
-${color grey}Frequency (in GHz):$color $freq_g
-${color grey}RAM Usage:$color $mem/$memmax - $memperc% ${membar 4}
-${color grey}Swap Usage:$color $swap/$swapmax - $swapperc% ${swapbar 4}
-${color grey}CPU Usage:$color $cpu% ${cpubar 4}
-${color grey}Processes:$color $processes  ${color grey}Running:$color $running_processes
-$hr
-${color grey}File systems:
- / $color${fs_used /}/${fs_size /} ${fs_bar 6 /}
-${color grey}Networking:
-Up:$color ${upspeed} ${color grey} - Down:$color ${downspeed}
-$hr
-${color grey}Name              PID   CPU%   MEM%
-${color lightgrey} ${top name 1} ${top pid 1} ${top cpu 1} ${top mem 1}
-${color lightgrey} ${top name 2} ${top pid 2} ${top cpu 2} ${top mem 2}
-${color lightgrey} ${top name 3} ${top pid 3} ${top cpu 3} ${top mem 3}
-${color lightgrey} ${top name 4} ${top pid 4} ${top cpu 4} ${top mem 4}
+
+${color yellow}System Informations by Conky ${conky_version}  ${color grey} customized by plex19
+${color yellow}${stippled_hr 1}
+${color red}${tab 15}System ${color white}
+${tab 45}System: ${sysname} - ${distribution}
+${tab 45}Computername: $nodename 
+${tab 45}Kernel: $kernel 
+${tab 45}Uptime: ${uptime}         
+${tab 45}-CPU-total: ${cpu cpu0}% Voltage: ${voltage_v 1} 
+#${color red}${tab 15}Sensors
+#${color white}${tab 45}${exec sensors}
+${color red}${tab 15}Disc 
+${color grey}${tab 35}Mountingpoint / FreeSpace / TotalSpace / Free in %
+${color white}${tab 45}Root ${fs_free /} / ${fs_size /} / ${fs_free_perc /} % 
+${tab 45}sda_Linux-Daten ${fs_free /mnt/Linux-Daten} / ${fs_size /mnt/Linux-Daten} / ${fs_free_perc /mnt/Linux-Daten} %
+${tab 45}Home ${fs_free /home} / ${fs_size /home} / ${fs_free_perc /home} %
+${tab 45}Swap ${swap} / ${swapperc} %
+${color red}${tab 15}NETWORK
+${color red}${tab 15}Process
+${color grey}${tab 35}Process / CPU / RAM 
+${color white}${tab 45}${top name 1} ${top cpu 2} ${top mem 3}
+${tab 45}${top name 2} ${top cpu 2} ${top mem 3}
+${tab 45}${top name 3} ${top cpu 2} ${top mem 3}
+${tab 45}${top name 4} ${top cpu 2} ${top mem 3}
+${tab 45}${top name 5} ${top cpu 2} ${top mem 3}
+
+
 ]]
